@@ -22,7 +22,15 @@
         <textarea id="content"class="materialize-textarea" placeholder="Content"></textarea>
         <label for="content">Content</label>
       </div>
-    <button id="do" class="right waves-effect waves-light btn">Do</button>
+      <div class="col s6">
+        <p>
+          <input type="checkbox" id="reverse" />
+          <label for="reverse">Reverse</label>
+        </p>
+      </div>
+      <div class="col s6">
+        <button id="do" class="right waves-effect waves-light btn">Do</button>
+      </div>
     </div>
       </div>
     <!--Import jQuery before materialize.js-->
@@ -35,8 +43,8 @@
         $('#do').click(function(){
         	var content = '';
           
-        	var _key = $('#key').val();
-          var _content = $('#content').val();
+        	var _key = $('#key').val().toLowerCase();
+          var _content = $('#content').val().toLowerCase();
           
           var _one = _key[0],
           		_two = _key.slice(-1);
@@ -44,9 +52,14 @@
           var _s = _control.indexOf(_two) - _control.indexOf(_one);
          
          	for (var x = 0, length = _content.length; x < length; x++) {
-          	var _i = _control.indexOf(_content[x].toLowerCase());
-            
-            var i = _i + _s;
+          	var _i = _control.indexOf(_content[x]);
+            var i = _i;
+            if ($('#reverse').is(':checked')) {
+              i = _i - _s;
+            }
+            else {
+              i = _i + _s;
+            }
             
             if ( i > _control.length ) {
             	i = i - _control.length;
