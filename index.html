@@ -52,11 +52,12 @@
           var _s = _control.indexOf(_two) - _control.indexOf(_one);
          
          	for (var x = 0, length = _content.length; x < length; x++) {
-         	  if (_content[x] == ' ') {
+         	  
+            if (_content[x] == ' ') {
          	    content = content + ' ';
          	    continue;
-         	  }
-          	var _i = _control.indexOf();
+         	 	}
+          	var _i = _control.indexOf(_content[x]);
             var i = _i;
             if ($('#reverse').is(':checked')) {
               i = _i - _s;
@@ -65,11 +66,14 @@
               i = _i + _s;
             }
             
-            if ( i > _control.length ) {
+            if ( i >= _control.length ) {
             	i = i - _control.length;
             } else if ( i < 0 ) {
             	i = i + _control.length;
             }
+            
+            alert(_i, _s, i, $('#reverse').is(':checked'));
+            
           	content = content + _control[i];
           }
           
