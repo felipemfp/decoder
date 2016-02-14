@@ -1,85 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <title>Decoder #4521 by felipemfp</title>
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
+<head>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <title>Decoder #4521 by felipemfp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
 
-  <body>
-    <div class="container">
+    main {
+      flex: 1 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
     <h1>Decoder #4521</h1>
     <div class="row">
-      <div class="input-field col s12">
-        <input type="text" length="3" id="key" placeholder="Key" />
-        <label for="key">Key</label>
+      <div class="col s12">
+        <div class="input-field col s12">
+          <input type="text" length="3" id="key" placeholder="Key" />
+          <label for="key">Key</label>
+        </div>
+        <div class="input-field col s12">
+          <textarea id="content"class="materialize-textarea" placeholder="Content"></textarea>
+          <label for="content">Content</label>
+        </div>
+        <div class="col s6">
+          <p>
+            <input type="checkbox" id="reverse" />
+            <label for="reverse">Reverse</label>
+          </p>
+        </div>
+        <div class="col s6">
+          <button id="do" class="right waves-effect waves-light btn">Do</button>
+        </div>
       </div>
-      <div class="input-field col s12">
-        <textarea id="content"class="materialize-textarea" placeholder="Content"></textarea>
-        <label for="content">Content</label>
+    </main>
+    <footer class="page-footer grey darken-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l2 hide-on-med-and-down">
+              <img class="col s12" alt="Cover of Finish This Book" src="images/book.jpg" />
+          </div>
+          <div class="col l5 s12">
+            <h5 class="white-text">Finish This Book</h5>
+            <p class="grey-text text-lighten-4">From the author of Wreck This Journal, a collaborative creative journey where you complete the book.</p>
+          </div>
+          <div class="col l3 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="http://www.penguin.com/book/finish-this-book-by-keri-smith/9780399536892">Read more</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="col s6">
-        <p>
-          <input type="checkbox" id="reverse" />
-          <label for="reverse">Reverse</label>
-        </p>
+      <div class="footer-copyright">
+        <div class="container">
+          &copy; 2016 Felipe Pontes
+          <a class="grey-text text-lighten-4 right" href="http://github.com/felipemfp">GitHub</a>
+        </div>
       </div>
-      <div class="col s6">
-        <button id="do" class="right waves-effect waves-light btn">Do</button>
-      </div>
-    </div>
-      </div>
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    </footer>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <script>
-      $(function() {
-      	var _control = "abcdefghiklmnopqrstuvwxyz1234567890";
-        
-        $('#do').click(function(){
-        	var content = '';
-          
-        	var _key = $('#key').val().toLowerCase();
-          var _content = $('#content').val().toLowerCase();
-          
-          var _one = _key[0],
-          		_two = _key.slice(-1);
-              
-          var _s = _control.indexOf(_two) - _control.indexOf(_one);
-         
-         	for (var x = 0, length = _content.length; x < length; x++) {
-         	  
-            if (_content[x] == ' ') {
-         	    content = content + ' ';
-         	    continue;
-         	 	}
-          	var _i = _control.indexOf(_content[x]);
-            var i = _i;
-            if ($('#reverse').is(':checked')) {
-              i = _i - _s;
-            }
-            else {
-              i = _i + _s;
-            }
-            
-            if ( i >= _control.length ) {
-            	i = i - _control.length;
-            } else if ( i < 0 ) {
-            	i = i + _control.length;
-            }
-            
-          	content = content + _control[i];
-          }
-          
-          $('#content').val(content);
-        
-        });
-        
-      });
-    </script>
+    <script src="scripts/main.js"></script>
   </body>
-</html>
+  </html>
