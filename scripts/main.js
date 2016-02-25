@@ -1,5 +1,5 @@
 $(function() {
-  var _control = "abcdefghiklmnopqrstuvwxyz1234567890";
+  var _control = "abcdefghijklmnopqrstuvwxyz1234567890";
 
   $('#do').click(function(){
     var content = '';
