@@ -9,8 +9,8 @@ $(function() {
         _two = _key.slice(-1);
     var _s = _control.indexOf(_two) - _control.indexOf(_one);
     for (var x = 0, length = _content.length; x < length; x++) {
-      if (_content[x] == ' ') {
-        content = content + ' ';
+      if (_control.indexOf(_content[x]) == -1) {
+        content = content + _content[x];
         continue;
       }
       var _i = _control.indexOf(_content[x]);
@@ -28,6 +28,6 @@ $(function() {
       }
       content = content + _control[i];
     }
-    $('#content').val(content);
+    $('#content').val(content.toUpperCase());
   });
 });
